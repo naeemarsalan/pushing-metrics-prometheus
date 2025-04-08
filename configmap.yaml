@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+
+    scrape_configs:
+      - job_name: 'controller-edb-01'
+        metrics_path: /api/v2/metrics/
+        bearer_token_file: /etc/prometheus/secrets/token
+        scheme: http
+        static_configs:
+          - targets: ['controller-edb-01-service.aap-24']
+
+    remote_write:
+      - url: "http://172.99.0.105:9191/api/v1/write"
+
