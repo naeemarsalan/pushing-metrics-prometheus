@@ -15,7 +15,7 @@ This setup is **lightweight**, **ephemeral**, and avoids integrating with full P
 - A **ConfigMap** defining Prometheus scraping and remote write configuration.
 - A **Secret** storing a Bearer Token used for authenticating with the metrics endpoint.
 - A **Deployment** that:
-  - Runs the official `prom/prometheus` image.
+  - Runs the official `quay.io/prometheus/prometheus:main` image.
   - Mounts the config and secret.
   - Uses an ephemeral `emptyDir` volume for required TSDB files.
   - Is configured with restricted `securityContext` for OpenShift compatibility.
